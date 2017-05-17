@@ -48,12 +48,16 @@ func (b *Bitcoind) CreateRawTransaction(inputs []*RawTransactionInput, output Ra
 		return "", err
 	}
 
+	fmt.Printf("%s %s\n", inStr, outStr)
 	r, err := b.client.call("createrawtransaction", []string{string(inStr), string(outStr)})
+	fmt.Println(r, err)
 	if err = handleError(err, &r); err != nil {
+		fmt.Println(r, err)
 		return "", err
 	}
 
 	rawtx = string(r.Result)
+	fmt.Println(rawtx)
 	return rawtx, nil
 
 }

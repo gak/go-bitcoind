@@ -90,7 +90,7 @@ func (c *rpcClient) call(method string, params interface{}) (rr rpcResponse, err
 	if err != nil {
 		return
 	}
-	fmt.Printf("DEBUG: %s", enc)
+	fmt.Printf("DEBUG: %s\n", enc)
 	err = jsonEncoder.Encode(rpcR)
 	if err != nil {
 		return

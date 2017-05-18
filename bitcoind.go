@@ -42,11 +42,11 @@ func (b *Bitcoind) CreateRawTransaction(inputs []*RawTransactionInput, output Ra
 
 	r, err := b.client.call("createrawtransaction", []interface{}{inputs, output})
 	if err = handleError(err, &r); err != nil {
-		return "", err
+		return
 	}
 
-	rawtx = string(r.Result)
-	return rawtx, nil
+	err = json.Unmarshal(r.Result, &rawtx)
+	return
 
 }
 

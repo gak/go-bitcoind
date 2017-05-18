@@ -39,16 +39,8 @@ func (b *Bitcoind) BackupWallet(destination string) error {
 // CreateRawTransaction makes a new raw transaction from inputs and
 // outputs
 func (b *Bitcoind) CreateRawTransaction(inputs []*RawTransactionInput, output RawTransactionOutput) (rawtx string, err error) {
-	inStr, err := json.Marshal(inputs)
-	if err != nil {
-		return "", err
-	}
-	outStr, err := json.Marshal(output)
-	if err != nil {
-		return "", err
-	}
 
-	r, err := b.client.call("createrawtransaction", []string{string(inStr), string(outStr)})
+	r, err := b.client.call("createrawtransaction", []interface{}{inputs, output})
 	if err = handleError(err, &r); err != nil {
 		return "", err
 	}

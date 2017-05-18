@@ -41,10 +41,12 @@ func (b *Bitcoind) BackupWallet(destination string) error {
 func (b *Bitcoind) CreateRawTransaction(inputs []*RawTransactionInput, output RawTransactionOutput) (rawtx string, err error) {
 	inStr, err := json.Marshal(inputs)
 	if err != nil {
+		fmt.Println(err)
 		return "", err
 	}
 	outStr, err := json.Marshal(output)
 	if err != nil {
+		fmt.Println(err)
 		return "", err
 	}
 

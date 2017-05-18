@@ -86,6 +86,11 @@ func (c *rpcClient) call(method string, params interface{}) (rr rpcResponse, err
 	rpcR := rpcRequest{method, params, time.Now().UnixNano(), "1.0"}
 	payloadBuffer := &bytes.Buffer{}
 	jsonEncoder := json.NewEncoder(payloadBuffer)
+	enc, err := json.Marshal(rpcR)
+	if err != nil {
+		return
+	}
+	fmt.Printf("DEBUG: %s", enc)
 	err = jsonEncoder.Encode(rpcR)
 	if err != nil {
 		return

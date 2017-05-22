@@ -597,9 +597,14 @@ func (b *Bitcoind) SendMany(fromAccount string, amounts map[string]float64, minc
 }
 
 // SendRawTransaction sends the provided signed raw transaction
-func (b *Bitcoind) SendRawTransaction(signedtx string) error {
+func (b *Bitcoind) SendRawTransaction(signedtx string) (string, error) {
 	r, err := b.client.call("sendrawtransaction", []string{signedtx})
-	return handleError(err, &r)
+	if err = handleError(err, &r); err != nil {
+		return "", err
+	}
+	var txID string
+	err = json.Unmarshal(r.Result, &txID)
+	return txID, err
 }
 
 // SendToAddress send an amount to a given address

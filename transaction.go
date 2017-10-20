@@ -73,6 +73,7 @@ type Transaction struct {
 	BlockIndex      int64                `json:"blockindex"`
 	BlockTime       int64                `json:"blocktime"`
 	TxID            string               `json:"txid"`
+	Vout            int64                `json:"vout,omitempty"`
 	WalletConflicts []string             `json:"walletconflicts"`
 	Time            int64                `json:"time"`
 	TimeReceived    int64                `json:"timereceived"`

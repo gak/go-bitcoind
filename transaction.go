@@ -53,12 +53,20 @@ type TransactionDetails struct {
 	Fee      float64 `json:"fee,omitempty"`
 }
 
+// TransactionCategory represents the category of a transaction
+type TransactionCategory string
+
+const (
+	TX_CATEGORY_SEND    TransactionCategory = "send"
+	TX_CATEGORY_RECEIVE TransactionCategory = "receive"
+)
+
 // Transaction represents a transaction
 type Transaction struct {
 	Amount          float64              `json:"amount"`
 	Account         string               `json:"account,omitempty"`
 	Address         string               `json:"address,omitempty"`
-	Category        string               `json:"category,omitempty"`
+	Category        TransactionCategory  `json:"category,omitempty"`
 	Fee             float64              `json:"fee,omitempty"`
 	Confirmations   int64                `json:"confirmations"`
 	BlockHash       string               `json:"blockhash"`

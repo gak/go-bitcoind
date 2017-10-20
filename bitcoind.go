@@ -77,6 +77,17 @@ func (b *Bitcoind) EstimateFee(blocks int) (fee float64, err error) {
 	return
 }
 
+// FundRawTransaction sends the provided signed raw transaction
+func (b *Bitcoind) FundRawTransaction(rawtx string) (*FundRawTransactionResponse, error) {
+	r, err := b.client.call("fundrawtransaction", []string{rawtx})
+	if err = handleError(err, &r); err != nil {
+		return nil, err
+	}
+	resp := &FundRawTransactionResponse{}
+	err = json.Unmarshal(r.Result, &resp)
+	return resp, err
+}
+
 // GetAccount returns the account associated with the given address.
 func (b *Bitcoind) GetAccount(address string) (account string, err error) {
 	r, err := b.client.call("getaccount", []string{address})

@@ -5,6 +5,12 @@ import (
 	"strings"
 )
 
+type FundRawTransactionResponse struct {
+	Hex       string  `json:"hex"`
+	Fee       float64 `json:"fee"`
+	ChangePos int     `json:"changepos"`
+}
+
 type SignRawTransactionResponse struct {
 	Hex      string                    `json:"hex"`
 	Complete bool                      `json:"complete"`

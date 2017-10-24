@@ -50,6 +50,18 @@ func (b *Bitcoind) CreateRawTransaction(inputs []*RawTransactionInput, output Ra
 
 }
 
+func (b *Bitcoind) DecodeRawTransaction(rawtx string) (decoded RawTransaction, err error) {
+
+	r, err := b.client.call("decoderawtransaction", []interface{}{rawtx})
+	if err = handleError(err, &r); err != nil {
+		return
+	}
+
+	err = json.Unmarshal(r.Result, &decoded)
+	return
+
+}
+
 // DumpPrivKey return private key as string associated to public <address>
 func (b *Bitcoind) DumpPrivKey(address string) (privKey string, err error) {
 	r, err := b.client.call("dumpprivkey", []string{address})

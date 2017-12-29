@@ -26,18 +26,6 @@ type Block struct {
 	// The block time in seconds since epoch (Jan 1 1970 GMT)
 	Time int64 `json:"time"`
 
-	// The nonce
-	Nonce uint64 `json:"nonce"`
-
-	// The bits
-	Bits string `json:"bits"`
-
-	// The difficulty
-	Difficulty float64 `json:"difficulty"`
-
-	// Total amount of work in active chain, in hexadecimal
-	Chainwork string `json:"chainwork,omitempty"`
-
 	// The hash of the previous block
 	Previousblockhash string `json:"previousblockhash"`
 

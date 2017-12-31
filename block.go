@@ -17,9 +17,6 @@ type Block struct {
 	// The block version
 	Version uint32 `json:"version"`
 
-	// The merkle root
-	Merkleroot string `json:"merkleroot"`
-
 	// Slice on transaction ids
 	Tx []string `json:"tx"`
 

@@ -34,7 +34,7 @@ type Vout struct {
 type RawTransaction struct {
 	Hex           string `json:"hex"`
 	Txid          string `json:"txid"`
-	Version       uint32 `json:"version"`
+	Version       int32  `json:"version"`
 	LockTime      uint32 `json:"locktime"`
 	Vin           []Vin  `json:"vin"`
 	Vout          []Vout `json:"vout"`
